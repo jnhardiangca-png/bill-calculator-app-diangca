@@ -1,0 +1,108 @@
+/* NAVIGATION */
+nav {
+    background: #005bea;
+    padding: 12px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* centers menu items */
+    align-items: center;
+    gap: 25px;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a {
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background: white;
+    color: #005bea;
+}
+
+/* LOGO */
+.logo {
+    font-size: 40px;
+    font-weight: bold;
+    color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px; /* space between logo and nav links */
+}
+
+
+/* FORM CONTAINER */
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    background: #f0f8ff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #005bea;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #003a9b;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #005bea;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-container input[type="submit"]:hover {
+    background: #003a9b;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 15px;
+}

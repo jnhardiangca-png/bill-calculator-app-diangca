@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="CSS/result.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li class="logo">⚡</li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="user_dashboard.html">Dashboard</a></li>
+            <li><a href="calculator_page.html">Calculator</a></li>
+            <li><a class="active" href="results_page.html">Results</a></li>
+            <li><a href="profile_page.html">Profile</a></li>
+            <li><a href="#" onclick="handleLogout(); return false;">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container">
+        <h1>Calculation Results</h1>
+        <p class="welcome-text">View all your electricity bill calculations</p>
+
+        <div id="result">
+            <h3>Your Saved Results</h3>
+            <table id="myTable">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Power (kWh)</th>
+                        <th>Cost / kWh (₱)</th>
+                        <th>Total (₱)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JS inserts rows -->
+                    <tr class="empty-row">
+                        <td colspan="4" class="empty-message">
+                            No calculations yet. <a href="calculator_page.html">Calculate your first bill</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const session = await initAuth();
+            if (session) loadCalculations();
+        });
+
+        async function loadCalculations() {
+            const user = await getCurrentUser();
+            if (!user) return;
+
+            const { data, error } = await supabaseClient
+                .from("calculations")
+                .select("*")
+                .eq("user_id", user.id)
+                .order("created_at", { ascending: false });
+
+            const tbody = document.querySelector("#myTable tbody");
+            tbody.innerHTML = "";
+
+            if (error) {
+                alert("Error loading calculations: " + error.message);
+                return;
+            }
+
+            if (!data || data.length === 0) {
+                const emptyRow = `<tr class="empty-row">
+                    <td colspan="4" class="empty-message">No calculations yet. 
+                        <a href='calculator_page.html'>Calculate your first bill</a>
+                    </td>
+                </tr>`;
+                tbody.innerHTML = emptyRow;
+                return;
+            }
+
+            data.forEach(calc => {
+                const row = `
+                    <tr>
+                        <td>${calc.month}</td>
+                        <td>${parseFloat(calc.power_consumption).toFixed(2)}</td>
+                        <td>₱ ${parseFloat(calc.cost_per_kwh).toFixed(2)}</td>
+                        <td>₱ ${parseFloat(calc.result).toFixed(2)}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        async function handleLogout() {
+            const success = await signOut();
+            if (success) window.location.href = "login.html";
+            else alert("Error logging out.");
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+/* GENERAL */
+body {
+    margin: 0;
+    padding: 0;
+    background: #e3f1ff;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVIGATION */
+nav {
+    background: #005bea;
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center; /* center all items horizontally */
+    align-items: center;
+    gap: 25px; /* spacing between items */
+}
+
+nav ul li a {
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background: white;
+    color: #005bea;
+}
+
+/* LOGO */
+.logo {
+    font-size: 40px;   
+    font-weight: bold;
+    color: yellow;
+    display: flex;       
+    align-items: center;  
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: 0; /* remove auto margin to keep logo centered with items */
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.container h1 {
+    color: #005bea;
+    margin-bottom: 10px;
+}
+
+.welcome-text {
+    color: #333;
+    font-size: 17px;
+    margin-bottom: 40px;
+}
+
+/* DASHBOARD CARDS */
+.dashboard-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.dashboard-card {
+    background: white;
+    width: 260px;
+    padding: 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+}
+
+.card-icon {
+    font-size: 40px;
+    color: #005bea;
+    margin-bottom: 10px;
+}
+
+.dashboard-card h3 {
+    margin: 10px 0 5px;
+    color: #004bb3;
+}
+
+/* Text inside cards */
+.dashboard-card p {
+    color: #555;
+    font-size: 14px;
+}
